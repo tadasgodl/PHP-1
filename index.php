@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>As vauldau HTML!</title>
+    <title>As valdau HTML!</title>
 </head>
 <body>
     <main>
