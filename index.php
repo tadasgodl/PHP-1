@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>
-        PHP lydes ir
-        <?php print date('y-m-d', strtotime('+' . rand(1, 1000) . 'days')) . '!'; ?></title>
+    <title>Bomb</title>
     <meta charset="UTF-8">
     <style>
         body {
-            background: rgb(<?php print rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255); ?>);
+            display: flex;
+            justify-content: center;
         }
-        h1 {
-            font-size:<?php print rand(10, 50);?>px;
+        .dice1 {
+            content: url("images/dice1.png");
         }
-        p {
-            color: rgb(<?php print rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255); ?>);
+        .dice2 {
+            content: url("images/dice2.png");
         }
+        .dice3 {
+            content: url("images/dice3.png");
+        }
+        .dice4 {
+            content: url("images/dice4.png");
+        }
+        .dice5 {
+            content: url("images/dice5.png");
+        }
+        .dice6 {
+            content: url("images/dice6.png");
+        }
+
     </style>
 </head>
 <body>
-    <main>
-        <h1>
-            <b>Vardas</b> - galbut turesiu
-            <?php print rand(1, 5) . ' vaika(us)!'; ?>
-        </h1>
-        <p>
-            Trumpas nebebus prezidentu:
-            <?php print date('Y-m-d', strtotime('+' . rand(2, 10) . 'year')); ?> ne uz kalnu!
-        </p>
-    </main>
+    <div class="dice<?php print rand(1, 6);?>"></div>
 </body>
 </html>
