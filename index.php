@@ -13,9 +13,15 @@
             content: url("images/bomb.png");
             height: <?php print date('s') . 'px';?>;
         }
+        p {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div class="bomb"></div>
+    <section>
+        <div class="bomb"></div>
+        <P><?php print date('s')?></P>
+    </section>
 </body>
 </html>
