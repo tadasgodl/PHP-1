@@ -22,6 +22,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -37,7 +38,7 @@
       <option name="presentableId" value="Default" />
       <updated>1602490550036</updated>
       <workItem from="1602490551364" duration="855000" />
-      <workItem from="1602569311650" duration="13184000" />
+      <workItem from="1602569311650" duration="13867000" />
     </task>
     <servers />
   </component>
