@@ -7,7 +7,10 @@
 <body>
     <main>
         <h1>Tadas<span style="font-weight: normal; font-size: 30px;"> - HTML <?php print('ir PHP');?> asas!</span></h1>
-        <p>Moku kurti statini kurini.<br>Atidaryta: <?php print date('y-m-d H:i:s');?></p>
+        <p>Moku kurti statini kurini.<br>Atidaryta:
+            <?php date_default_timezone_set('Europe/Vilnius');
+            print date('y-m-d H:i:s');?>
+        </p>
     </main>
 </body>
 </html>
