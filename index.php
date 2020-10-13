@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>As valdau HTML <?php print('ir PHP');?>!</title>
+    <title><?php print 'As, ' . date('l') . ' ir PHP'?></title>
     <meta charset="UTF-8">
 </head>
 <body>
     <main>
-        <h1>Tadas<span style="font-weight: normal; font-size: 30px;"> - HTML <?php print('ir PHP');?> asas!</span></h1>
-        <p>Moku kurti statini kurini.<br>Atidaryta:
-            <?php date_default_timezone_set('Europe/Vilnius');
-            print date('y-m-d H:i:s');?>
+        <h1>
+            Vardas
+            <span style="font-weight: normal">
+                - HTML <?php print 'ir PHP'; ?> asas jau nuo
+                <?php print date('Y') . ' metu'; ?>
+            </span>
+        </h1>
+        <p>
+            Viskas prasidejo
+            <?php print date('m') . ' menesio ' . date('d') . ' diena!'; ?>
         </p>
     </main>
 </body>
