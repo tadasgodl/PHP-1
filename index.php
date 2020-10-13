@@ -9,13 +9,13 @@
             display: flex;
             justify-content: center;
         }
-        div {
+        .bomb {
             content: url("images/bomb.png");
             height: <?php print date('s') . 'px';?>;
         }
     </style>
 </head>
 <body>
-    <div></div>
+    <div class="bomb"></div>
 </body>
 </html>
