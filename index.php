@@ -1,21 +1,16 @@
 <?php
-    $distance = rand(1, 4000);
-    $consumption = 7.5;
-    $price_1 = 1.3;
-    $fuel_total = $consumption / 100 * $distance;
-    $price_trip = $fuel_total * $price_1;
-    $my_money = 100;
-    $affordable = '';
+    $grizai_isgeres = 0;
+    $grizai_velai = 1;
 
-    if ($my_money < $price_trip) {
-        $affordable = 'neiperkama';
+    if ($grizai_velai && $grizai_isgeres) {
+        $outcome = 'Grizai velai ir isgeres';
+    } else if ($grizai_velai) {
+        $outcome = 'Grizai velai';
+    } else if ($grizai_isgeres) {
+        $outcome = 'Grizai isgeres';
     } else {
-        $affordable = 'iperkama';
+        $outcome = 'Nieko nepadarei';
     }
-
-
-    $fuel_total_f = number_format($fuel_total, 2);
-    $price_trip_f = number_format($price_trip, 2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,17 +20,8 @@
 </head>
 <body>
     <div>
-        <h1>Keliones Skaiciuokle</h1>
-        <ul>
-            <li>Nuvaziuota distancija: <?php print $distance; ?></li>
-            <li>Sunaudota <?php print $fuel_total_f; ?> litru 1 kuro. </li>
-            <li>Kaina: <?php print $price_trip_f; ?> pinigu.</li>
-        </ul>
-        <ul>
-            <li>Turimi pinigai: <?php print $my_money; ?>.</li>
-        </ul>
-        <hr>
-        <p>Isvada: Kelione <?php print $affordable; ?>.</p>
+        <h1>Buitine skaiciuokle</h1>
+        <h2><?php print $outcome; ?></h2>
     </div>
 </body>
 </html>
