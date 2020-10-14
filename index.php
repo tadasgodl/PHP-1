@@ -1,23 +1,35 @@
 <?php
-    $random_card_1_player = rand(1, 11);
-    $random_card_2_player = rand(1, 11);
-    $random_card_1_dealer = rand(1, 11);
-    $random_card_2_dealer = rand(1, 11);
+    $tmrw_date = date('Y-m-d', strtotime(+1 . 'days'));
+    $tmrw_date_weekday = date('l', strtotime(+1 . 'days'));
 
-    $player_hand = $random_card_1_player + $random_card_2_player;
-    $dealer_hand = $random_card_1_dealer + $random_card_2_dealer;
+    $breakfast_random = rand(1, 2);
+    $lunch_random = rand(1, 2);
+    $dinner_random = rand(1, 2);
 
-    if ($player_hand < $dealer_hand) {
-        $winner = 'Dealer';
-        $winner_hand = 'with ' . $dealer_hand;
+    $total_price = 0;
+
+    if ($breakfast_random == 1) {
+        $breakfast_price = 5.5;
+        $total_price += $breakfast_price;
     } else {
-        if ($player_hand == $dealer_hand) {
-            $winner = 'No one';
-            $winner_hand = null;
-        } else {
-            $winner = 'Player';
-            $winner_hand = 'with ' . $player_hand;
-        }
+        $breakfast_price = 7.5;
+        $total_price += $breakfast_price;
+    }
+
+    if ($lunch_random == 1) {
+        $lunch_price = 4;
+        $total_price += $lunch_price;
+    } else {
+        $lunch_price = 2.5;
+        $total_price += $lunch_price;
+    }
+
+    if ($dinner_random == 1) {
+        $dinner_price = 2.75;
+        $total_price += $dinner_price;
+    } else {
+        $dinner_price = 6;
+        $total_price += $dinner_price;
     }
 ?>
 <!DOCTYPE html>
@@ -25,18 +37,63 @@
 <head>
     <title>Clauses</title>
     <meta charset="UTF-8">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        img {
+            width: 150px;
+            height: 100px;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .breakfast-1 {
+            content: url("images/breakfast1.jpg");
+        }
+        .breakfast-2 {
+            content: url("images/breakfast2.jpg");
+        }
+        .lunch-1 {
+            content: url("images/lunch1.jpg");
+        }
+        .lunch-2 {
+            content: url("images/lunch2.jpg");
+        }
+        .dinner-1 {
+            content: url("images/dinner1.jpg");
+        }
+        .dinner-2 {
+            content: url("images/dinner2.jpg");
+        }
+    </style>
 </head>
 <body>
-    <h1><?php print $winner; ?> is the winner <?php print $winner_hand; ?></h1>
-    <div>
-        <h2>Dealer gets <?php print $dealer_hand; ?></h2>
-        <div><?php print $random_card_1_dealer; ?></div>
-        <div><?php print $random_card_2_dealer; ?></div>
-    </div>
-    <div>
-        <h2>Player gets <?php print $player_hand; ?></h2>
-        <div><?php print $random_card_1_player; ?></div>
-        <div><?php print $random_card_2_player; ?></div>
-    </div>
+    <main>
+        <h1><?php print $tmrw_date; ?></h1>
+        <h2><?php print $tmrw_date_weekday; ?></h2>
+        <div>
+            <h3>Breakfast</h3>
+            <img class="breakfast-<?php print $breakfast_random; ?>">
+            <p>Price: <?php print $breakfast_price; ?> EUR.</p>
+        </div>
+        <div>
+            <h3>Lunch</h3>
+            <img class="lunch-<?php print $lunch_random; ?>">
+            <p>Price: <?php print $lunch_price; ?> EUR.</p>
+        </div>
+        <div>
+            <h3>Dinner</h3>
+            <img class="dinner-<?php print $dinner_random; ?>">
+            <p>Price: <?php print $dinner_price; ?> EUR.</p>
+        </div>
+        <h2>Total price is: <?php print $total_price; ?> EUR.</h2>
+    </main>
 </body>
 </html>
