@@ -11,25 +11,31 @@
     if ($breakfast_random == 1) {
         $breakfast_price = 5.5;
         $total_price += $breakfast_price;
+        $cheapest_breakfast = 'Pigiausias produktas';
     } else {
         $breakfast_price = 7.5;
         $total_price += $breakfast_price;
+        $cheapest_breakfast = null;
     }
 
     if ($lunch_random == 1) {
         $lunch_price = 4;
         $total_price += $lunch_price;
+        $cheapest_lunch = null;
     } else {
         $lunch_price = 2.5;
         $total_price += $lunch_price;
+        $cheapest_lunch = 'Pigiausias produktas';
     }
 
     if ($dinner_random == 1) {
         $dinner_price = 2.75;
         $total_price += $dinner_price;
+        $cheapest_dinner = 'Pigiausias produktas';
     } else {
         $dinner_price = 6;
         $total_price += $dinner_price;
+        $cheapest_dinner = null;
     }
 ?>
 <!DOCTYPE html>
@@ -53,6 +59,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        .cheapest {
+            background: green;
+            color: antiquewhite;
         }
         .breakfast-1 {
             content: url("images/breakfast1.jpg");
@@ -82,16 +92,19 @@
             <h3>Breakfast</h3>
             <img class="breakfast-<?php print $breakfast_random; ?>">
             <p>Price: <?php print $breakfast_price; ?> EUR.</p>
+            <p class="cheapest"><?php print $cheapest_breakfast; ?></p>
         </div>
         <div>
             <h3>Lunch</h3>
             <img class="lunch-<?php print $lunch_random; ?>">
             <p>Price: <?php print $lunch_price; ?> EUR.</p>
+            <p class="cheapest"><?php print $cheapest_lunch; ?></p>
         </div>
         <div>
             <h3>Dinner</h3>
             <img class="dinner-<?php print $dinner_random; ?>">
             <p>Price: <?php print $dinner_price; ?> EUR.</p>
+            <p class="cheapest"><?php $cheapest_dinner; ?></p>
         </div>
         <h2>Total price is: <?php print $total_price; ?> EUR.</h2>
     </main>
