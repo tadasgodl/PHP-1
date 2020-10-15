@@ -1,58 +1,68 @@
 <?php
-    $sunny = rand(0, 1);
-    $rainy = rand(0, 1);
+    $real_time_hours = date('h');
+    $real_time_minutes = date('i');
+    $real_time_seconds = date('s');
 
-    $weather = '';
-    $weather_class = '';
-
-    if ($sunny) {
-        if ($rainy) {
-            $weather = 'Sunny with rain.';
-            $weather_class = 'sunny-with-rain';
-        } else {
-            $weather = 'Sunny.';
-            $weather_class = 'sunny';
-        }
-    } else {
-        if ($rainy) {
-            $weather = 'Rainy.';
-            $weather_class = 'rainy';
-        } else {
-            $weather = 'Cloudy.';
-            $weather_class = 'cloudy';
-        }
-    }
+    $hours_to_degrees = 360 / 12 * $real_time_hours;
+    $minutes_to_degrees = 360 / 60 * $real_time_minutes;
+    $seconds_to_degrees = 360 / 60 * $real_time_seconds;
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <title>Clauses</title>
     <meta charset="UTF-8">
+    <title>Clock</title>
     <style>
-        .sunny-with-rain {
-            background-image: url("https://cdn1.iconfinder.com/data/icons/weather-forecast-meteorology-color-1/128/weather-sunny-showers-512.png");
-            background-repeat: no-repeat;
+        main {
+            display: flex;
+            justify-content: center;
         }
-        .sunny {
-            background-image: url("https://cdn1.iconfinder.com/data/icons/weather-flat-9/512/weather__season__forecast__sunny__sun__hot__big_-512.png");
-            background-repeat: no-repeat;
+        .clock-base {
+            position: relative;
+            background-image: url("images/clock-template.jpg");
+            background-size: contain;
+            width: 400px;
+            height: 400px;
         }
-        .rainy {
-            background-image: url("https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather07-512.png");
-            background-repeat: no-repeat;
+        .clock-hour-arrow {
+            position: absolute;
+            height: 150px;
+            width: 5px;
+            left: 49.4%;
+            top: 12.5%;
+            background-color: red;
+            transform: rotate(<?php print $hours_to_degrees; ?>deg);
+            transform-origin: 0% 100%;
         }
-        .cloudy {
-            background-image: url("https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather07-512.png");
-            background-repeat: no-repeat;
+        .clock-minutes-arrow {
+            position: absolute;
+            height: 150px;
+            width: 5px;
+            left: 49.4%;
+            top: 12.5%;
+            background-color: yellow;
+            transform: rotate(<?php print $minutes_to_degrees; ?>deg);
+            transform-origin: 0% 100%;
         }
-        div {
-            height: 300px;
+        .clock-seconds-arrow {
+            position: absolute;
+            height: 150px;
+            width: 5px;
+            left: 49.4%;
+            top: 12.5%;
+            background-color: black;
+            transform: rotate(<?php print $seconds_to_degrees; ?>deg);
+            transform-origin: 0% 100%;
         }
     </style>
 </head>
 <body>
-    <div class="<?php print $weather_class; ?>">
-    <p><?php print $weather; ?></p>
-    </div>
+    <main>
+        <div class="clock-base">
+            <div class="clock-hour-arrow"></div>
+            <div class="clock-minutes-arrow"></div>
+            <div class="clock-seconds-arrow"></div>
+        </div>
+    </main>
 </body>
 </html>
