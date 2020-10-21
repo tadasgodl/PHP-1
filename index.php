@@ -1,54 +1,27 @@
 <?php
-$products = [
-        'row-one' => [
-                'items' => [
-                        [
-                                'name' => 'Eggs',
-                                'quantity' => 3
-                        ],
-                        [
-                                'name' => 'Sour Cream',
-                                'quantity' => 1
-                        ],
-                        [
-                                'name' => 'Jogurt',
-                                'quantity' => 2
-                        ],
-                        [
-                                'name' => 'Fish',
-                                'quantity' => 0
-                        ]
-                ],
-        ],
-        'row-two' => [
-                'items' => [
-                        [
-                                'name' => 'Milk',
-                                'quantity' => 1
-                        ],
-                        [
-                                'name' => 'Kefir',
-                                'quantity' => 0
-                        ],
-                        [
-                                'name' => 'Vodka',
-                                'quantity' => 2
-                        ],
-                        [
-                                'name' => 'Ketchup',
-                                'quantity' => 2
-                        ]
-                ]
-        ],
-];
+for ($x = 1; $x < rand(10, 30); $x++) {
+    for ($i = 1; $i <= $x; $i++) {
+        $decoration = rand(1, 30);
+        if ($decoration == 1 || $decoration == 2 || $decoration == 3) {
+            print '^';
+        } else {
+            print '*';
+        }
 
-var_dump($products);
+    }
+    print '<br>';
+}
 ?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Loops</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <main>
