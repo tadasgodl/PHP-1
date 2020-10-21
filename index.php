@@ -1,28 +1,14 @@
 <?php
-$days = 365;
-$pack_price = 3.50;
-$count_ttl = 0;
-$price_ttl = 0;
+$months = 24;
+$car_price_new = 30000; // brand new price //
+$car_price_used = 30000; // start price //
+$depreciation = 0.98; // reducing price 2% //
+$depr_perc =  38.42; // ($car_price_new - $car_price_used) / 100 = 38.42; //
 
-for ($i = 1; $i <= $days; $i++) {
-    $date_check = date('N', strtotime("+$i days"));
-    $cigs_mon_fri = rand(3, 4);
-    $cigs_sat = rand(10, 20);
-    $cigs_sun = rand(1, 3);
-
-    if ($date_check > 6) {
-        $count_ttl += $cigs_mon_fri;
-    }
-    else if ($date_check == 6) {
-        $count_ttl += $cigs_sat;
-    } else {
-        $count_ttl += $cigs_sun;
-    }
-
-    $price_ttl = $count_ttl / 20 * $pack_price;
+for ($x = 1; $x <= $months; $x++) {
+    $car_price_used *= $depreciation;
 }
 
-$h2 = "Per $days dienas, surukysiu $count_ttl cigareciu uz $price_ttl euru. ";
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,8 +18,10 @@ $h2 = "Per $days dienas, surukysiu $count_ttl cigareciu uz $price_ttl euru. ";
 </head>
 <body>
     <main>
-        <h1>Mano dumu skaiciuokle</h1>
-        <h2><?php print $h2; ?></h2>
+        <h1>Kiek nuvertes masina?</h1>
+        <h2>Naujos masinos kaina: <?php print $car_price_new; ?></h2>
+        <h3>Po <?php print $months; ?> men., masinos verte bus <?php print ceil($car_price_used); ?> euru.</h3>
+        <h4>Masina nuvertes <?php print $depr_perc; ?> procentu.</h4>
     </main>
 </body>
 </html>
