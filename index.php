@@ -1,14 +1,48 @@
 <?php
-$months = 24;
-$car_price_new = 30000; // brand new price //
-$car_price_used = 30000; // start price //
-$depreciation = 0.98; // reducing price 2% //
-$depr_perc =  38.42; // ($car_price_new - $car_price_used) / 100 = 38.42; //
+$products = [
+        'row-one' => [
+                'items' => [
+                        [
+                                'name' => 'Eggs',
+                                'quantity' => 3
+                        ],
+                        [
+                                'name' => 'Sour Cream',
+                                'quantity' => 1
+                        ],
+                        [
+                                'name' => 'Jogurt',
+                                'quantity' => 2
+                        ],
+                        [
+                                'name' => 'Fish',
+                                'quantity' => 0
+                        ]
+                ],
+        ],
+        'row-two' => [
+                'items' => [
+                        [
+                                'name' => 'Milk',
+                                'quantity' => 1
+                        ],
+                        [
+                                'name' => 'Kefir',
+                                'quantity' => 0
+                        ],
+                        [
+                                'name' => 'Vodka',
+                                'quantity' => 2
+                        ],
+                        [
+                                'name' => 'Ketchup',
+                                'quantity' => 2
+                        ]
+                ]
+        ],
+];
 
-for ($x = 1; $x <= $months; $x++) {
-    $car_price_used *= $depreciation;
-}
-
+var_dump($products);
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,10 +52,6 @@ for ($x = 1; $x <= $months; $x++) {
 </head>
 <body>
     <main>
-        <h1>Kiek nuvertes masina?</h1>
-        <h2>Naujos masinos kaina: <?php print $car_price_new; ?></h2>
-        <h3>Po <?php print $months; ?> men., masinos verte bus <?php print ceil($car_price_used); ?> euru.</h3>
-        <h4>Masina nuvertes <?php print $depr_perc; ?> procentu.</h4>
     </main>
 </body>
 </html>
