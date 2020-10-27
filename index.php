@@ -1,35 +1,96 @@
 <?php
-$my_memories = [
-        'Taksi',
-        'Baras',
-        'Laukas',
-        'Gatve',
-        'Valgis',
-        'Gerimai',
-        'Pinigai'
+$products = [
+        [
+                'name' => 'Holy Water',
+                'price' => 1.50,
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQk1WdxMZRencR7nZAMv8mhW4pRD8XaSyo6BQ&usqp=CAU'
+        ],
+        [
+                'name' => 'Water',
+                'price' => 1,
+                'price_special' => 0.75,
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRmCsfWz6wNNC-JLWXPPt7sSHZmH5rWZ8muJA&usqp=CAU'
+        ],
+        [
+                'name' => 'Unfiltered Water',
+                'price' => 0.25,
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSPQZAFObJY-OBvT_77lEaFRMwmSQLOn7f66A&usqp=CAU'
+        ],
+        [
+                'name' => 'Grape Juice',
+                'price' => 2,
+                'price_special' => 1.99,
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRG88B5wPcQ0zZnVWI5AVjbOB-Z8jIrJgKVaQ&usqp=CAU'
+        ]
 ];
 
-$fb_index = array_rand($my_memories);
-$fb_text = $my_memories[$fb_index];
+foreach ($products as $key => $product) {
+    if(isset($products[$key]['price_special'])) {
+        $price_special_percent = ($products[$key]['price'] - $products[$key]['price_special']) * 100;
+        $products[$key]['price_special_percent'] = $price_special_percent;
+    }
+}
 
-$h3 = "$fb_index: $fb_text";
 ?>
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ForEach Cycle</title>
+    <title>Cycles</title>
+    <style>
+        * {
+            font-family: sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+        }
+        article {
+            position: relative;
+            border: 1px solid grey;
+            margin: 5px;
+        }
+        p, h1 {
+            text-align: center;
+        }
+        img {
+            height: 200px;
+            width: 200px;
+        }
+        .floating-price {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: orange;
+        }
+        .floating-discount {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
     <main>
-        <h1>Kas buvo penktadieni?</h1>
-        <h2>Mano prisiminimai: </h2>
-        <h3><?php print $h3; ?></h3>
-        <ul>
-            <?php foreach ($my_memories as $my_memory): ?>
-                <li><?php print $my_memory; ?></li>
+        <h1>Drink Catalogue</h1>
+        <section>
+            <?php foreach ($products as $key => $product): ?>
+                <article>
+                    <img src="<?php print $product['image']; ?>" alt="drinks">
+                    <p><?php print $product['name']; ?></p>
+
+                    <?php if(isset($products[$key]['price_special'])): ?>
+                    <p class="floating-price"><?php print $product['price_special'] . '$'; ?></p>
+                    <p class="floating-discount"><?php print ' -' . $products[$key]['price_special_percent'] . '%'; ?></p>
+                    <?php else: ?>
+                    <p class="floating-price"><?php print $product['price'] . '$'; ?></p>
+                    <?php endif; ?>
+                </article>
             <?php endforeach; ?>
-        </ul>
+        </section>
     </main>
 </body>
 </html>
