@@ -26,7 +26,7 @@ $products = [
 
 foreach ($products as $key => $product) {
     if(isset($products[$key]['price_special'])) {
-        $price_special_percent = ($products[$key]['price'] - $products[$key]['price_special']) * 100;
+        $price_special_percent = round(100 - $products[$key]['price_special'] * 100 / $products[$key]['price']);
         $products[$key]['price_special_percent'] = $price_special_percent;
     }
 }
