@@ -25,7 +25,10 @@ $products = [
 ];
 
 foreach ($products as $key => $product) {
-    if(isset($products[$key]['price_special'])) {
+    $in_stock = rand(0, 1);
+    $products[$key]['in_stock'] = $in_stock;
+
+    if(isset($product['price_special'])) {
         $price_special_percent = round(100 - $products[$key]['price_special'] * 100 / $products[$key]['price']);
         $products[$key]['price_special_percent'] = $price_special_percent;
     }
@@ -71,23 +74,42 @@ foreach ($products as $key => $product) {
             top: 0;
             background-color: red;
         }
+        .in-stock {
+            padding-top: 5px;
+            color: green;
+        }
+        .out-of-stock {
+            padding-top: 5px;
+            color: red;
+        }
+        .image-in-stock {
+
+        }
+        .image-out-of-stock {
+            filter: grayscale(100%);
+        }
     </style>
 </head>
 <body>
     <main>
         <h1>Drink Catalogue</h1>
         <section>
-            <?php foreach ($products as $key => $product): ?>
+            <?php foreach ($products as $product): ?>
                 <article>
-                    <img src="<?php print $product['image']; ?>" alt="drinks">
+                    <img src="<?php print $product['image']; ?>" alt="drinks" class="<?php print $product['in_stock'] ? 'image-in-stock' : 'image-out-of-stock'; ?>">
                     <p><?php print $product['name']; ?></p>
 
-                    <?php if(isset($products[$key]['price_special'])): ?>
-                    <p class="floating-price"><?php print $product['price_special'] . '$'; ?></p>
-                    <p class="floating-discount"><?php print ' -' . $products[$key]['price_special_percent'] . '%'; ?></p>
+                    <?php if(isset($product['price_special'])): ?>
+                        <p class="floating-price"><?php print $product['price_special'] . '$'; ?></p>
+                        <p class="floating-discount"><?php print ' -' . $product['price_special_percent'] . '%'; ?></p>
                     <?php else: ?>
-                    <p class="floating-price"><?php print $product['price'] . '$'; ?></p>
+                        <p class="floating-price"><?php print $product['price'] . '$'; ?></p>
                     <?php endif; ?>
+
+                    <p class="<?php print $product['in_stock'] ? 'in-stock' : 'out-of-stock'; ?>">
+                        <?php print $product['in_stock'] ? 'In stock.' : 'Out of stock.'; ?>
+                    </p>
+
                 </article>
             <?php endforeach; ?>
         </section>
