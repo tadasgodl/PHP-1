@@ -1,24 +1,30 @@
 <?php
-function generate_matrix($size) {
-    $array = [];
-    for ($i = 1; $i <= $size; $i++) {
-        $array[$i] = [];
+$numbers = [838, 121, 344, 555, 768, 878, 987, 345, 565];
 
-        for ($x = 1; $x <= $size; $x++) {
-            $array[$i][$x] = rand(0, 1);
+function palindromes(&$numbers) {
+    foreach ($numbers as $index => &$number) {
+        $number = strval($number);
+        $reverse_number = strval(strrev($number));
+
+        if ($number === $reverse_number) {
+            $number = strrev($reverse_number) + 0;
+        } else {
+            array_splice($numbers, $index, 1);
         }
     }
-    return $array;
+    sort($numbers);
 }
 
-var_dump(generate_matrix(5));
-
-
+var_dump($numbers);
+palindromes($numbers);
+var_dump($numbers);
 ?>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Functions</title>
+    <title>2020-11-03</title>
+    <style>
+    </style>
 </head>
 <body>
     <main>
