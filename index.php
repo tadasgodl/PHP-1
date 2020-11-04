@@ -1,33 +1,81 @@
 <?php
-$numbers = [838, 121, 344, 555, 768, 878, 987, 345, 565];
 
-function palindromes(&$numbers) {
-    foreach ($numbers as $index => &$number) {
-        $number = strval($number);
-        $reverse_number = strval(strrev($number));
+require './functions/html.php';
 
-        if ($number === $reverse_number) {
-            $number = strrev($reverse_number) + 0;
-        } else {
-            array_splice($numbers, $index, 1);
-        }
+$form = [
+    'fields' => [
+        'email' => [
+            'label' => 'Email:',
+            'type' => 'text',
+            'extra' => [
+                'attr' => [
+                    'placeholder' => 'aurimas@email',
+                    'class' => 'input-field'
+                ]
+            ]
+        ],
+        'password' => [
+            'label' => 'Password:',
+            'type' => 'password',
+            'extra' => [
+                'attr' => [
+                    'placeholder' => 'password...',
+                    'class' => 'input-field'
+                ],
+            ],
+        ]
+    ],
+    'buttons' => [
+        'login' => [
+            'title' => 'Login',
+            'type' => 'submit',
+            'extra' => [
+                'attr' => [
+                     'class' => 'btn'
+                ],
+            ]
+        ],
+        'clear' => [
+            'title' => 'Clear',
+            'type' => 'reset',
+            'extra' => [
+                'attr' => [
+                    'class' => 'btn'
+                ],
+            ],
+        ]
+    ],
+];
+
+
+function get_clean_input($form) {
+    $parameters = [];
+
+    foreach ($form as $index => $input) {
+        $parameters[$index] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
-    sort($numbers);
+    return filter_input_array(INPUT_POST, $parameters);
 }
-
-var_dump($numbers);
-palindromes($numbers);
-var_dump($numbers);
+$svarus_inputai = get_clean_input($form);
 ?>
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-    <title>2020-11-03</title>
-    <style>
-    </style>
+    <meta charset="UTF-8">
+    <title>Forms</title>
 </head>
 <body>
-    <main>
-    </main>
+<form method="POST">
+    <?php foreach ($form['fields'] as $input_name => $input): ?>
+        <label>
+            <?php print $input['label']; ?>
+            <input <?php print input_attr($input_name, $input); ?>>
+        </label>
+    <?php endforeach; ?>
+    <?php foreach ($form['buttons'] as $button_name => $button): ?>
+        <button <?php print button_attr($button_name, $button); ?>>
+            <?php print $button['title']; ?>
+        </button>
+    <?php endforeach; ?>
+</form>
 </body>
 </html>
